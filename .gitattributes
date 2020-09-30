@@ -1,1 +1,1 @@
-deploy merge=ours
+deploy.js merge=ours

@@ -28,5 +28,5 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.ref, "release")
     steps:
-      - run: echo "I only run if the branch has release in its name!"
+    - run: echo "I only run if the branch has release in its name!"
            

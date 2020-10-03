@@ -26,7 +26,7 @@ jobs:
     - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
   job3:
     runs-on: ubuntu-latest
-    if: contains(github.ref, "master")
+    if: github.ref == 'refs/heads/master'
     steps:
     - run: echo "I only run if the branch has release in its name!"
            

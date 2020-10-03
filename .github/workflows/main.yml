@@ -51,7 +51,7 @@ jobs:
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
   envCheck:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - name: Set env to staging
         if: endsWith(github.ref, '/develop')

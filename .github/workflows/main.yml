@@ -28,11 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Print for Master
-        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+      - name: First Name
+        run: echo My First Name is $FIRST_NAME!
         env:
           FIRST_NAME: Mona
-          middle_name: The
-          Last_Name: Octocat
-  
+      - name: Last Name
+        run: echo My Last Name is $LAST_NAME!
+        env:
+          LAST_NAME: Octocat
+
            

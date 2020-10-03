@@ -44,12 +44,11 @@ jobs:
         run: echo My Last Name is $LAST_NAME!
         env:
           LAST_NAME: Octocat
-  jobs4:
-    printInputs:
-      runs-on: ubuntu-latest
-      steps:
-      - run: |
-          echo "Log level: ${{ github.event.inputs.logLevel }}"
-          echo "Tags: ${{ github.event.inputs.tags }}" 
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Tags: ${{ github.event.inputs.tags }}" 
 
            

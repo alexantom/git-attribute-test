@@ -5,7 +5,7 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 
-on: push
+on: workflow_dispatch
 
 jobs:
   job1:
@@ -28,5 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-    - run: echo "I only run if the branch has master in its name!"
+      - name: Print for Master
+        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+        env:
+          FIRST_NAME: Mona
+          middle_name: The
+          Last_Name: Octocat
+  
            

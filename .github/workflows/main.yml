@@ -5,7 +5,16 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    branches: [ "feature/*", "devops/*" ]
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
 
 jobs:
   job1:
@@ -28,11 +37,29 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Print for Master
-        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+      - name: First Name
+        run: echo My First Name is $FIRST_NAME!
         env:
           FIRST_NAME: Mona
-          middle_name: The
-          Last_Name: Octocat
-  
+      - name: Last Name
+        run: echo My Last Name is $LAST_NAME!
+        env:
+          LAST_NAME: Octocat
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+  envCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env to staging
+        if: endsWith(github.ref, '/develop')
+        run: |
+          echo "::set-env name=ENVIRONMENT::staging"
+      - name: Set env to production
+        if: endsWith(github.ref, '/master')
+        run: |
+          echo "::set-env name=ENVIRONMENT::production"
            
